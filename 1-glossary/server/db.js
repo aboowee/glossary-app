@@ -13,10 +13,15 @@ const wordSchema = new Schema({
 const Word = mongoose.model("Word", wordSchema);
 
 let insertWord = (data) => {
-  Word.create({word: data.word, description: data.description})
+  return Word.create({word: data.word, description: data.description})
+}
+
+let searchWord = () => {
+  return Word.find({});
 }
 
 module.exports.insertWord = insertWord;
+module.exports.searchWord = searchWord;
 
 // 1. Use mongoose to establish a connection to MongoDB
 // 2. Set up any schema and models needed by the app

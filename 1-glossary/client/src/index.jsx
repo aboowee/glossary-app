@@ -5,9 +5,10 @@ import FormInput from './components/formInput.jsx';
 import Filter from './components/Filter.jsx';
 import axios from 'axios';
 
+
 var App = () => {
 
-  const { useState } = React;
+  const { useState, useEffect } = React;
 
   const [wordsList, setWords] = useState([]);
 
@@ -18,7 +19,7 @@ var App = () => {
     })
     .then((data) =>
     {
-      setWords(data);
+      setWords(data.data);
     })
     .catch((err) => {
       console.log('Could not get data: ', err);
@@ -36,7 +37,6 @@ var App = () => {
     })
     .then((data) =>
     {
-      console.log(data);
       getWords();
     })
     .catch((err) => {
@@ -44,12 +44,18 @@ var App = () => {
     })
   }
 
+  useEffect(()=>{
+    fetch('/words')
+    .then(data => (data.json()))
+    .then(data => {setWords(data)})
+  }, [])
+
   return (
     <div>
       <h1 onClick={()=>{console.log('test')}}>IT'S GLOSSARY TIME BABY</h1>
       <FormInput onSubmit={sendWords}/>
       <Filter />
-      <GlossaryList/>
+      <GlossaryList glossary={wordsList}/>
     </div>
   )
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import $ from 'jquery';
 
-var GlossaryList = () => {
+var GlossaryList = (props) => {
 
   const {useState} = React;
 
@@ -9,10 +10,16 @@ var GlossaryList = () => {
 
   return (
     <div>
-      <div>Word Here</div>
-      <div> Description Here </div>
-      <button>Update</button>
-      <button>Delete</button>
+      {props.glossary.map((word, index) => {
+        return(
+          <div>
+            <div id='thisTest'>{word.word}</div>
+            <div>{word.description}</div>
+            <button>Update</button>
+            <button onClick={(target)=> {console.log(index)}}>Delete</button>
+          </div>
+        )
+      })}
     </div>
   )
 
