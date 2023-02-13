@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import $ from 'jquery';
 
-var Filter = () => {
+var Filter = (props) => {
 
 return (
   <div>
     <form>
-      <div>Filter Words: <input type="text"></input></div>
+      <div>Filter By Word: <input type="text" id="filterInput"></input></div>
     </form>
+      <button onClick={()=>{props.filter($('#filterInput').val())}}>Filter</button>
   </div>
 )
 

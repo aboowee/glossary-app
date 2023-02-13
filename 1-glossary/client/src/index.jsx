@@ -54,7 +54,6 @@ var App = () => {
     <div>
       <h1 onClick={()=>{console.log('test')}}>IT'S GLOSSARY TIME BABY</h1>
       <FormInput onSubmit={sendWords}/>
-      <Filter />
       <GlossaryList glossary={wordsList}/>
     </div>
   )

@@ -1,16 +1,34 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
+import Filter from './Filter.jsx';
 
 var GlossaryList = (props) => {
 
-  const {useState} = React;
+  const {useState, useEffect} = React;
 
-  const [selectedItem, setItem] = useState('');
+  const [renderedList, setRender] = useState ([])
+
+  useEffect(() => {
+    setRender(props.glossary);
+    console.log('test');
+    console.log(props.glossary);
+  }, [props.glossary])
+
+  const filterGlossary = (input) => {
+    let filteredGlossary = [];
+    props.glossary.forEach((word)=>{
+      if (word.word.includes(input)) {
+        filteredGlossary.push(word);
+      };
+    })
+    setRender(filteredGlossary);
+  }
 
   return (
     <div>
-      {props.glossary.map((word, index) => {
+      <Filter filter={filterGlossary}/>
+      {renderedList.map((word, index) => {
         return(
           <div>
             <div id='thisTest'>{word.word}</div>
