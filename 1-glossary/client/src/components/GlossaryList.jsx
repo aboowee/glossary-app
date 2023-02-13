@@ -10,10 +10,9 @@ var GlossaryList = (props) => {
   const [renderedList, setRender] = useState ([])
 
   useEffect(() => {
+    console.log(props.glossary, 'are we here')
     setRender(props.glossary);
-    console.log('test');
-    console.log(props.glossary);
-  }, [props.glossary])
+  }, props.glossary)
 
   const filterGlossary = (input) => {
     let filteredGlossary = [];
@@ -28,13 +27,13 @@ var GlossaryList = (props) => {
   return (
     <div>
       <Filter filter={filterGlossary}/>
-      {renderedList.map((word, index) => {
+      {props.glossary.map((word, index) => {
         return(
           <div>
             <div id='thisTest'>{word.word}</div>
             <div>{word.description}</div>
             <button>Update</button>
-            <button onClick={(target)=> {console.log(index)}}>Delete</button>
+            <button onClick={(target)=> {props.delete(props.glossary[index].word)}}>Delete</button>
           </div>
         )
       })}

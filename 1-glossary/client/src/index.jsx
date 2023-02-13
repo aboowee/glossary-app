@@ -44,6 +44,23 @@ var App = () => {
     })
   }
 
+  const deleteWord = (word) => {
+    axios({
+      method: "post",
+      url: "/delete",
+      data: {
+        word: word,
+      }
+    })
+    .then((data) =>
+    {
+      getWords();
+    })
+    .catch((err) => {
+      console.log('Could not send data: ', err);
+    })
+  }
+
   useEffect(()=>{
     fetch('/words')
     .then(data => (data.json()))
@@ -54,7 +71,7 @@ var App = () => {
     <div>
       <h1 onClick={()=>{console.log('test')}}>IT'S GLOSSARY TIME BABY</h1>
       <FormInput onSubmit={sendWords}/>
-      <GlossaryList glossary={wordsList}/>
+      <GlossaryList glossary={wordsList} delete={deleteWord}/>
     </div>
   )
 

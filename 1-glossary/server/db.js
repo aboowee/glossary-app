@@ -20,8 +20,13 @@ let searchWord = () => {
   return Word.find({});
 }
 
+let deleteWord = (word) => {
+  return Word.deleteOne({word: word});
+}
+
 module.exports.insertWord = insertWord;
 module.exports.searchWord = searchWord;
+module.exports.deleteWord = deleteWord;
 
 // 1. Use mongoose to establish a connection to MongoDB
 // 2. Set up any schema and models needed by the app
