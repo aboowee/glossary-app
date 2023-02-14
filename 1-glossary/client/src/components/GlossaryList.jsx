@@ -1,39 +1,36 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
-import Filter from './Filter.jsx';
+import FormInput from './FormInput.jsx';
 
 var GlossaryList = (props) => {
 
   const {useState, useEffect} = React;
 
-  const [renderedList, setRender] = useState ([])
-
-  useEffect(() => {
-    console.log(props.glossary, 'are we here')
-    setRender(props.glossary);
-  }, props.glossary)
+  const [filterSearch, setSearch] = useState ('');
 
   const filterGlossary = (input) => {
-    let filteredGlossary = [];
-    props.glossary.forEach((word)=>{
-      if (word.word.includes(input)) {
-        filteredGlossary.push(word);
-      };
-    })
-    setRender(filteredGlossary);
+    setSearch(input.target.value);
   }
 
   return (
     <div>
-      <Filter filter={filterGlossary}/>
-      {props.glossary.map((word, index) => {
+      <form>
+        <div>Filter By Word: <input type="text" id="filterInput" onChange={(target)=>{filterGlossary(target)}}></input></div>
+      </form>
+      {props.glossary.filter((word) => {
+        if (filterSearch === '' || word.word.includes(filterSearch)) {
+          return true;
+        } else {
+          return false;
+        }
+      }).map((word, index) => {
         return(
-          <div>
-            <div id='thisTest'>{word.word}</div>
-            <div>{word.description}</div>
+          <div id={word.word}>
+            <div>Word: {word.word}</div>
+            <div>Definition: {word.description}</div>
             <button>Update</button>
-            <button onClick={(target)=> {props.delete(props.glossary[index].word)}}>Delete</button>
+            <button onClick={()=> {props.delete(word.word)}}>Delete</button>
           </div>
         )
       })}

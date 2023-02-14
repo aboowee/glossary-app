@@ -9,7 +9,7 @@ var FormInput = ({onSubmit}) => {
   const [glossaryInput, setInput] = useState({})
   const [clicked, setClick] = useState(false);
 
-  const Handler = () => {
+  const inputHandler = () => {
     setInput({word: $('#wordForm').val(),
     description: $('#descForm').val()});
     setClick(!clicked);
@@ -22,7 +22,7 @@ return (
       <div>Insert Word Here: <input type="text" id="wordForm"></input></div>
       <div>Insert Description Here: <input type="text" id="descForm"></input></div>
     </form>
-    <button onClick={Handler}>Submit</button>
+    <button onClick={inputHandler}>Submit</button>
     <button onClick={()=>{setClick(!clicked); onSubmit(glossaryInput)}} disabled={!clicked}>Add To List!</button>
   </div>
 )

@@ -30,6 +30,17 @@ App.post('/delete', (req, res) => {
   })
 })
 
+//FIX THIS HERE, ADD UPDATE INTO DB
+App.post('/update', (req, res) => {
+  deleteWord(req.body.word)
+  .then((data) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    res.sendStatus(404);
+  })
+})
+
 App.get('/words', (req, res) => {
   searchWord()
   .then((data) => {
