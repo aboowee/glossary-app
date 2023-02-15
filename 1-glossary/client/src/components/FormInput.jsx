@@ -7,23 +7,22 @@ var FormInput = ({onSubmit}) => {
   const { useState } = React;
 
   const [glossaryInput, setInput] = useState({})
-  const [clicked, setClick] = useState(false);
+  const [wordValue, setWord] = useState('')
+  const [descValue, setDesc] = useState('')
 
   const inputHandler = () => {
-    setInput({word: $('#wordForm').val(),
-    description: $('#descForm').val()});
-    setClick(!clicked);
+    onSubmit({word: wordValue,
+    description: descValue});
   }
 
 
 return (
   <div>
     <form>
-      <div>Insert Word Here: <input type="text" id="wordForm"></input></div>
-      <div>Insert Description Here: <input type="text" id="descForm"></input></div>
+      <div>Insert Word Here: <input type="text" id="wordForm" onChange={(e)=>{setWord(e.target.value)}}></input></div>
+      <div>Insert Description Here: <input type="text" id="descForm" onChange={(e)=>{setDesc(e.target.value)}}></input></div>
     </form>
-    <button onClick={inputHandler}>Submit</button>
-    <button onClick={()=>{setClick(!clicked); onSubmit(glossaryInput)}} disabled={!clicked}>Add To List!</button>
+    <button onClick={inputHandler} disabled={!wordValue || !descValue}>Submit</button>
   </div>
 )
 

@@ -4,13 +4,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-//input source file - index.jsx
-//output source folder - dist folder
-//output file name = bundle.js
-//babel reader (babel-loader)
-//Perhaps a css loader and html loader
-//mode: development or production
-
 /*
   What should go here?  Great question!
 
@@ -40,10 +33,11 @@ module.exports = {
           loader: 'babel-loader'
         }
       }
-      // {
-      //   test: /\.css$/,
-      //   use: [MiniCssExtractPlugin.loader, 'css-loader']
-      // }
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+        // use: [MiniCssExtractPlugin.loader, 'css-loader']
+      }
     ]
   }
   // plugins: [

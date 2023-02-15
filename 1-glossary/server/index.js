@@ -4,6 +4,7 @@ const path = require('path');
 const {insertWord: insertWord} = require('./db');
 const {searchWord: searchWord} = require('./db');
 const {deleteWord: deleteWord} = require('./db');
+const {updateWord: updateWord} = require('./db');
 
 const App = express();
 
@@ -30,9 +31,8 @@ App.post('/delete', (req, res) => {
   })
 })
 
-//FIX THIS HERE, ADD UPDATE INTO DB
 App.post('/update', (req, res) => {
-  deleteWord(req.body.word)
+  updateWord(req.body)
   .then((data) => {
     res.sendStatus(200);
   })

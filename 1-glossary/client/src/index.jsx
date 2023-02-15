@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import GlossaryList from './components/glossaryList.jsx';
 import FormInput from './components/formInput.jsx';
-import Filter from './components/Filter.jsx';
 import axios from 'axios';
 
 
@@ -61,6 +60,24 @@ var App = () => {
     })
   }
 
+  const updateWord = (wordInput) => {
+    axios({
+      method: "post",
+      url: "/update",
+      data: {
+        word: wordInput.word,
+        description: wordInput.description
+      }
+    })
+    .then((data) =>
+    {
+      getWords();
+    })
+    .catch((err) => {
+      console.log('Could not send data: ', err);
+    })
+  }
+
   useEffect(()=>{
     fetch('/words')
     .then(data => (data.json()))
@@ -69,9 +86,9 @@ var App = () => {
 
   return (
     <div>
-      <h1 onClick={()=>{console.log('test')}}>IT'S GLOSSARY TIME BABY</h1>
+      <h1>IT'S GLOSSARY TIME BABY</h1>
       <FormInput onSubmit={sendWords}/>
-      <GlossaryList glossary={wordsList} delete={deleteWord}/>
+      <GlossaryList update={updateWord} glossary={wordsList} delete={deleteWord}/>
     </div>
   )
 
