@@ -21,7 +21,7 @@ App.post('/words', (req, res) => {
   })
 })
 
-App.post('/delete', (req, res) => {
+App.delete('/words', (req, res) => {
   deleteWord(req.body.word)
   .then((data) => {
     res.sendStatus(200);
@@ -31,7 +31,7 @@ App.post('/delete', (req, res) => {
   })
 })
 
-App.post('/update', (req, res) => {
+App.put('/words', (req, res) => {
   updateWord(req.body)
   .then((data) => {
     res.sendStatus(200);
@@ -50,10 +50,6 @@ App.get('/words', (req, res) => {
     res.sendStatus(404);
   })
 })
-
-
-
-
 
 App.listen(3000, ()=> {
   console.log('listening to port 3000');

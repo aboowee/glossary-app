@@ -45,8 +45,8 @@ var App = () => {
 
   const deleteWord = (word) => {
     axios({
-      method: "post",
-      url: "/delete",
+      method: "delete",
+      url: "/words",
       data: {
         word: word,
       }
@@ -62,8 +62,8 @@ var App = () => {
 
   const updateWord = (wordInput) => {
     axios({
-      method: "post",
-      url: "/update",
+      method: "put",
+      url: "/words",
       data: {
         word: wordInput.word,
         description: wordInput.description
