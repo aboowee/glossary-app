@@ -5,17 +5,17 @@ var PersonalInfo = () => {
 
   return (
     <div>
-      <label for="shipping">Address Line 1: </label>
+      <label htmlFor="shipping">Address Line 1: </label>
       <input type="text" name="shipping"></input>
-      <label for="shippingOp">Address Line 2 (Optional): </label>
+      <label htmlFor="shippingOp">Address Line 2 (Optional): </label>
       <input type="text" name="shippingOp"></input>
-      <label for="city">City: </label>
+      <label htmlFor="city">City: </label>
       <input type="text" name="city"></input>
-      <label for="state">State: </label>
+      <label htmlFor="state">State: </label>
       <input type="text" name="state"></input>
-      <label for="shipZip">Shipping Zip Code: </label>
+      <label htmlFor="shipZip">Shipping Zip Code: </label>
       <input type="text" name="shipZip"></input>
-      <label for="phone">Phone Number: </label>
+      <label htmlFor="phone">Phone Number: </label>
       <input type="text" name="phone"></input>
       <button>Next</button>
     </div>

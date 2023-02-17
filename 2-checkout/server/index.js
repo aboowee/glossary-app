@@ -11,33 +11,41 @@ const app = express();
 
 // Adds `req.session_id` based on the incoming cookie value.
 // Generates a new session if one does not exist.
-app.use(sessionHandler);
+// app.use(sessionHandler);
 
 // Logs the time, session_id, method, and url of incoming requests.
-app.use(logger);
+// app.use(logger);
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.post('/signup', (req, res) => {
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
-app.post('/shipping', (req, res) => {
+// app.post('/signup', (req, res) => {
 
-})
+// });
 
-app.post('/payment', (req, res) => {
+// app.get('/signup', (req, res) => {
+//   res.sendStatus(200);
+// })
 
-})
+// app.post('/shipping', (req, res) => {
 
-app.get ('/summary', (req, res) => {
+// })
 
-})
+// app.post('/payment', (req, res) => {
 
-app.get('/', (req, res) => {
+// })
 
-})
+// app.get ('/summary', (req, res) => {
+
+// })
+
+// app.get('/', (req, res) => {
+
+// })
 /****
  *
  *

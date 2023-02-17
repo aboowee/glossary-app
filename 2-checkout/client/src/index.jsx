@@ -4,7 +4,7 @@ import Creation from "./components/Creation.jsx";
 import CreditCard from "./components/CreditCard.jsx";
 import PersonalInfo from "./components/PersonalInfo.jsx";
 import SummaryPage from "./components/SummaryPage.jsx";
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 class App extends React.Component {
   constructor() {
@@ -13,16 +13,22 @@ class App extends React.Component {
 
   render(){
     return(
-    <div>
-      <p>Hello, World!</p>
-      <p>
-        <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
-        <button>Checkout</button>
-        <Creation />
-        <PersonalInfo />
-        <CreditCard />
-      </p>
-    </div>)
+      <div>
+        {/* <Creation /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={
+            <div>
+              <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
+              <button>Checkout</button>
+            </div>} />
+            <Route path='/signup' element={<Creation />} />
+            <Route path='/shipping' element={<PersonalInfo />} />
+            <Route path='/payment' element={<CreditCard />} />
+        </Routes>
+      </BrowserRouter>
+      </div>
+    )
 
 }
 }
