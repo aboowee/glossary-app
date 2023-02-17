@@ -19,12 +19,31 @@ app.use(logger);
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-/**** 
- * 
- * 
+app.post('/signup', (req, res) => {
+
+});
+
+app.post('/shipping', (req, res) => {
+
+})
+
+app.post('/payment', (req, res) => {
+
+})
+
+app.get ('/summary', (req, res) => {
+
+})
+
+app.get('/', (req, res) => {
+
+})
+/****
+ *
+ *
  * Other routes here....
  *
- * 
+ *
  */
 
 app.listen(process.env.PORT);
