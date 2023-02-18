@@ -13,6 +13,8 @@ var PersonalInfo = () => {
   let [shipZip, setShipZip] = useState(0);
   let [phoneNumber, setPhoneNumber] = useState('')
 
+
+
   const shipping = () => {
       axios.post('/shipping', {
         address1: address1,
@@ -32,6 +34,7 @@ var PersonalInfo = () => {
 
   return (
     <div>
+      <h1>Shipping Information</h1>
       <label htmlFor="shipping">Address Line 1: </label>
       <input type="text" name="shipping" onChange={(e)=>{setAddress1(e.target.value)}}></input>
       <label htmlFor="shippingOp">Address Line 2 (Optional): </label>

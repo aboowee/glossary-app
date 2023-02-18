@@ -8,22 +8,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      name: null,
-      email: null,
-      password: null,
-      address1: null,
-      address2: null,
-      city: null,
-      state: null,
-      shipZip: null,
-      creditCard: null,
-      expiration: null,
-      cvc: null,
-      billZip: null
-    }
+  constructor(props) {
+    super(props);
   }
 
   checkout() {
@@ -33,26 +19,25 @@ class App extends React.Component {
       window.location = '/signup'
     })
     .catch((error) => {
-      window.location = '/summary'
+      window.location='/summary'
     })
   }
-
 
   render(){
     return(
       <div>
-        {/* <SummaryPage /> */}
       <BrowserRouter>
         <Routes>
           <Route path='/' element={
             <div>
+              <h1>Home Page</h1>
               <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
               <button onClick={()=>this.checkout()}>Checkout</button>
             </div>} />
             <Route path='/signup' element={<Creation />} />
             <Route path='/shipping' element={<PersonalInfo />} />
             <Route path='/payment' element={<CreditCard />} />
-            <Route path='/summary' element={<SummaryPage data={this.state}/>} />
+            <Route path='/summary' element={<SummaryPage />} />
         </Routes>
       </BrowserRouter>
       </div>

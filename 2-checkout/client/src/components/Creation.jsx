@@ -26,6 +26,7 @@ var Creation = () => {
 
   return (
     <div>
+      <h1>Signup Page</h1>
       <label htmlFor="email">Insert Email Address: </label>
       <input type="text" name="email" onChange={(e)=>{setEmail(e.target.value)}}></input>
       <label htmlFor="fullName">Full Name: </label>

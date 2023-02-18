@@ -55,13 +55,30 @@ app.post('/shipping', (req, res) => {
 })
 
 app.post('/payment', (req, res) => {
-  console.log(req.body);
-  res.redirect('/summary');
-})
+  db.query(`SELECT creditCard FROM responses WHERE sessionID = '${req.session_id}'`, (err, result) => {
+    if (!result[0].creditCard) {
+      db.query(`UPDATE responses SET creditCard='${req.body.creditCard}', cvc='${req.body.cvc}', expiration='${req.body.expiration}',
+      billZip='${req.body.billZip}', submitted=true WHERE sessionID='${req.session_id}'`)
+      res.redirect('/summary');
+    } else {
+      res.sendStatus(500);
+    }
+  })
+});
 
 app.post('/summary', (req, res) => {
   res.redirect('/');
-})
+});
+
+app.get('/data', (req, res) => {
+  db.query(`SELECT * FROM responses WHERE sessionID = '${req.session_id}'`, (err, result) => {
+    if (result.length) {
+      res.send(result[0]);
+    } else {
+      res.sendStatus(404);
+    }
+  })
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));

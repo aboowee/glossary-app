@@ -29,6 +29,7 @@ var CreditCard = () => {
 
   return (
     <div>
+      <h1>Payment Page</h1>
       <label htmlFor="creditCard">Credit Card: </label>
       <input type="text" name="creditCard" onChange={(e)=>{setCredit(e.target.value)}}></input>
       <label htmlFor="expiration">Expiration Date (mm/yy): </label>
