@@ -22,13 +22,14 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.json());
 
 app.post('/signup', (req, res) => {
-  //New user, assign req.body to session_id in DB
-  //Search in database if user exists
-  //if does, redirect to signup
-  //if not,
-  console.log(req.body);
-  console.log(req.session_id)
-  res.redirect('/shipping');
+  db.query(`SELECT email, submitted FROM responses WHERE email = '${req.body.email}'`, (err, result) => {
+    if (!result.length) {
+      db.query(`INSERT INTO responses (name, password, email, sessionID) VALUES ('${req.body.name}', '${req.body.password}', '${req.body.email}', '${req.session_id}')`)
+      res.redirect('/shipping');
+    } else {
+      res.sendStatus(500);
+    }
+  })
 })
 
 app.post('/checkout', (req, res) => {
@@ -40,7 +41,6 @@ app.post('/checkout', (req, res) => {
       res.sendStatus(500);
     }
   })
-
 })
 
 
